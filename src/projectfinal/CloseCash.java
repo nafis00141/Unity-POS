@@ -32,6 +32,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -544,6 +545,13 @@ public class CloseCash extends javax.swing.JFrame {
             document.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"problem in memoo");
+            StringBuilder sb = new StringBuilder(ex.toString());
+            for (StackTraceElement ste : ex.getStackTrace()) {
+                sb.append("\n\tat ");
+                sb.append(ste);
+            }
+            String ss = sb.toString();
+            JOptionPane.showMessageDialog(null,ss);
         }
         
         ///////////////////////////
