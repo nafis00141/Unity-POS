@@ -1653,15 +1653,15 @@ public class SellPage extends javax.swing.JFrame {
         // if the directory does not exist, create it
         if (!theDir.exists()) {
         //System.out.println("creating directory: " + directoryName);
-        boolean result = false;
+            boolean result = false;
 
-        try{
-            theDir.mkdir();
-            result = true;
-        } 
-        catch(SecurityException se){
-        //handle it
-        }
+            try{
+                theDir.mkdir();
+                result = true;
+            } 
+            catch(SecurityException se){
+            //handle it
+            }
         }
             
         
@@ -1758,7 +1758,7 @@ public class SellPage extends javax.swing.JFrame {
         //document.add(new Paragraph("                                   "));
         //document.add(new Paragraph("                                   "));
         document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                                                Total = "+a,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+        document.add(new Paragraph("                                            Total = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
         
         //document.add(new Paragraph("                                   "));
         //document.add(new Paragraph("                                   "));
@@ -1766,13 +1766,13 @@ public class SellPage extends javax.swing.JFrame {
             float dis = Float.parseFloat(jTextField6.getText());
             a=a-((a*dis)/100);
         
-            document.add(new Paragraph("Customer ID ="+jTextField4.getText()+"  After Discount = "+a,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("Customer ID ="+jTextField4.getText()+" After Discount = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
         }
         if(jTextField8.getText().equalsIgnoreCase("")==false){
             float dis = Float.parseFloat(jTextField8.getText());
             a=a-((a*dis)/100);
         
-            document.add(new Paragraph("Discount ="+jTextField8.getText()+"%    After Discount = "+a,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("Discount ="+jTextField8.getText()+"% After Discount = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
         }
         
         if(jTextField7.getText().equalsIgnoreCase("")==false){
@@ -1780,14 +1780,14 @@ public class SellPage extends javax.swing.JFrame {
             float v = (a*vat)/100;
             a=a+((a*vat)/100);
         
-            document.add(new Paragraph("Vat ="+jTextField7.getText()+"%               Vat = "+v,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("Vat ="+jTextField7.getText()+"%         Vat = "+v+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
             
         }
-        document.add(new Paragraph("                                     Net Amount = "+a,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                              Receive Amount = "+rec,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                             Returned Amount = "+(rec-a)+"     ",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+        document.add(new Paragraph("                                 Net Amount = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+        document.add(new Paragraph("                          Receive Amount = "+rec+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+        document.add(new Paragraph("                         Returned Amount = "+(rec-a)+" shs   ",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
         
-        document.add(new Paragraph(" "));
+        //document.add(new Paragraph(" "));
         document.add(new Paragraph(" "));
         document.add(new Paragraph("         Goods Once Sold Can not be Return",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
         document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));

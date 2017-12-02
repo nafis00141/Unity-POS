@@ -435,113 +435,113 @@ public class CloseCash extends javax.swing.JFrame {
             
         
         try {
-            
-        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/nafis", "root", "");
-        Statement s = (Statement) con.prepareStatement(sql);
-        
-            
-        ResultSet rs =s.executeQuery(sql);
-        
-        System.out.println("here rep");
-        
-        
-        
-        System.out.println("here rep");
-        
-        
-        String fname="",lname="";
-        
-        if(rs.next()){
-            fname = rs.getString(2);
-            lname = rs.getString(3);
-        }
-        
-        System.out.println("here rep");
-        
-        sql = "SELECT * FROM `cash` WHERE 1";
-        
-        s = (Statement) con.prepareStatement(sql);
-        
-            
-        rs =s.executeQuery(sql);
-        
-        System.out.println(fname +" "+ lname);
-        
-        Document document = new Document(PageSize.A5);
-        PdfWriter.getInstance(document,new FileOutputStream("C:\\Reports\\report("+date+").pdf"));
-        document.open();
-        Image image = Image.getInstance("api.png");
-        document.add(image);
-        
-        System.out.println("here rep");
-        
-        document.add(new Paragraph("UNITY POS REPORS",FontFactory.getFont(FontFactory.TIMES_BOLD, 20, Font.BOLD,BaseColor.BLUE)));
-        document.add(new Paragraph(date,FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("Report By "+fname+" "+lname,FontFactory.getFont(FontFactory.TIMES_BOLD, 15, Font.BOLD,BaseColor.DARK_GRAY)));
-        document.add(new Paragraph("--------------------------------------------------------------------------------------"));
-        
-        PdfPTable table =new PdfPTable(4);
-        //table.addCell("Date");
-        //table.addCell("Cash In/Out");
-        
-        PdfPCell cell = new PdfPCell(new Phrase("Date"));
-        cell.setBackgroundColor(BaseColor.DARK_GRAY);
-        table.addCell(cell);
-        PdfPCell ce = new PdfPCell(new Phrase("Cash In/Out"));
-        ce.setBackgroundColor(BaseColor.DARK_GRAY);
-        table.addCell(ce);
-        PdfPCell c = new PdfPCell(new Phrase("Cause"));
-        c.setBackgroundColor(BaseColor.DARK_GRAY);
-        table.addCell(c);
-        PdfPCell cel = new PdfPCell(new Phrase("Amount"));
-        cel.setBackgroundColor(BaseColor.DARK_GRAY);
-        table.addCell(cel);
-        
-        
-        
-        document.add(new Paragraph("  "));
-        document.add(table);
-        
-        
-        double in=0,out=0;
-        while(rs.next()){
-            String dateof = rs.getString(5);
-            String inout = rs.getString(2);
-            String cause = rs.getString(3);
-            String amount = rs.getString(4);
-            
-            double amo = Double.parseDouble(amount);
-            
-            
-            amount = String.format("%,.2f", amo);
 
-            
-            if(inout.equalsIgnoreCase("Cash In")){
-                in = in + amo;
+            Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/nafis", "root", "");
+            Statement s = (Statement) con.prepareStatement(sql);
+
+
+            ResultSet rs =s.executeQuery(sql);
+
+            System.out.println("here rep");
+
+
+
+            System.out.println("here rep");
+
+
+            String fname="",lname="";
+
+            if(rs.next()){
+                fname = rs.getString(2);
+                lname = rs.getString(3);
             }
-            else{
-                out = out + amo;
+
+            System.out.println("here rep");
+
+            sql = "SELECT * FROM `cash` WHERE 1";
+
+            s = (Statement) con.prepareStatement(sql);
+
+
+            rs =s.executeQuery(sql);
+
+            System.out.println(fname +" "+ lname);
+
+            Document document = new Document(PageSize.A5);
+            PdfWriter.getInstance(document,new FileOutputStream("C:\\Reports\\report("+date+").pdf"));
+            document.open();
+            Image image = Image.getInstance("api.png");
+            document.add(image);
+
+            System.out.println("here rep");
+
+            document.add(new Paragraph("UNITY POS REPORS",FontFactory.getFont(FontFactory.TIMES_BOLD, 20, Font.BOLD,BaseColor.BLUE)));
+            document.add(new Paragraph(date,FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("Report By "+fname+" "+lname,FontFactory.getFont(FontFactory.TIMES_BOLD, 15, Font.BOLD,BaseColor.DARK_GRAY)));
+            document.add(new Paragraph("--------------------------------------------------------------------------------------"));
+
+            PdfPTable table =new PdfPTable(4);
+            //table.addCell("Date");
+            //table.addCell("Cash In/Out");
+
+            PdfPCell cell = new PdfPCell(new Phrase("Date"));
+            cell.setBackgroundColor(BaseColor.DARK_GRAY);
+            table.addCell(cell);
+            PdfPCell ce = new PdfPCell(new Phrase("Cash In/Out"));
+            ce.setBackgroundColor(BaseColor.DARK_GRAY);
+            table.addCell(ce);
+            PdfPCell c = new PdfPCell(new Phrase("Cause"));
+            c.setBackgroundColor(BaseColor.DARK_GRAY);
+            table.addCell(c);
+            PdfPCell cel = new PdfPCell(new Phrase("Amount"));
+            cel.setBackgroundColor(BaseColor.DARK_GRAY);
+            table.addCell(cel);
+
+
+
+            document.add(new Paragraph("  "));
+            document.add(table);
+
+
+            double in=0,out=0;
+            while(rs.next()){
+                String dateof = rs.getString(5);
+                String inout = rs.getString(2);
+                String cause = rs.getString(3);
+                String amount = rs.getString(4);
+
+                double amo = Double.parseDouble(amount);
+
+
+                amount = String.format("%,.2f", amo);
+
+
+                if(inout.equalsIgnoreCase("Cash In")){
+                    in = in + amo;
+                }
+                else{
+                    out = out + amo;
+                }
+
+                PdfPTable t =new PdfPTable(4);
+                t.addCell(dateof);
+                t.addCell(inout);
+                t.addCell(cause);
+                t.addCell(amount);
+                document.add(t);
             }
-            
-            PdfPTable t =new PdfPTable(4);
-            t.addCell(dateof);
-            t.addCell(inout);
-            t.addCell(cause);
-            t.addCell(amount);
-            document.add(t);
-        }
-        
-        System.out.println("in="+in+"out="+out);
-        
-        
-        
-        document.add(new Paragraph("  "));
-        document.add(new Paragraph("                                            Total Invested:   "+String.format("%,.2f", out),FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                                            Total Return:     "+String.format("%,.2f", in),FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                                            Total Earned:     "+String.format("%,.2f", in-out),FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("  "));
-        document.add(new Paragraph("--------------------------------------------------------------------------------------"));
-        document.close();
+
+            System.out.println("in="+in+"out="+out);
+
+
+
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("                                            Total Invested:   "+String.format("%,.2f", out)+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("                                            Total Return:     "+String.format("%,.2f", in)+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("                                            Total Earned:     "+String.format("%,.2f", in-out)+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("--------------------------------------------------------------------------------------"));
+            document.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"problem in memoo");
         }

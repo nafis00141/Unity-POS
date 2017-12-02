@@ -16,7 +16,11 @@ public class AddEmployee extends javax.swing.JFrame {
     /**
      * Creates new form AddEmployee
      */
-    public AddEmployee() {
+    
+    public static Employee empobj;
+    
+    public AddEmployee(Employee em) {
+        empobj = em;
         initComponents();
     }
 
@@ -162,6 +166,7 @@ public class AddEmployee extends javax.swing.JFrame {
             jTextField3.setText("");
             jTextField4.setText("");
             jTextField5.setText("");
+            empobj.retreve();
         }
         else{
             JOptionPane.showMessageDialog(null,"Not Saved");
@@ -199,7 +204,7 @@ public class AddEmployee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddEmployee().setVisible(true);
+                new AddEmployee(empobj).setVisible(true);
             }
         });
     }
