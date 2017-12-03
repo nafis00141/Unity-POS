@@ -471,8 +471,8 @@ public class CloseCash extends javax.swing.JFrame {
             Document document = new Document(PageSize.A5);
             PdfWriter.getInstance(document,new FileOutputStream("C:\\Reports\\report("+date+").pdf"));
             document.open();
-            Image image = Image.getInstance("api.png");
-            document.add(image);
+            //Image image = Image.getInstance("api_1.png");
+            //document.add(image);
 
             System.out.println("here rep");
 

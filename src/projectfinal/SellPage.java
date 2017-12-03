@@ -436,7 +436,6 @@ public class SellPage extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -696,14 +695,6 @@ public class SellPage extends javax.swing.JFrame {
     jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
     jLabel3.setText("System");
 
-    jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectfinal/imageedit_3_6961796786.png"))); // NOI18N
-    jButton7.setText("Check in\\out");
-    jButton7.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton7ActionPerformed(evt);
-        }
-    });
-
     jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectfinal/imageedit_1_9752744011.png"))); // NOI18N
     jButton8.setText("About");
     jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -757,11 +748,10 @@ public class SellPage extends javax.swing.JFrame {
                 .addComponent(jButton15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton2))
-                .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addComponent(jButton2)
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addContainerGap())
     );
     jPanel3Layout.setVerticalGroup(
@@ -769,8 +759,6 @@ public class SellPage extends javax.swing.JFrame {
         .addGroup(jPanel3Layout.createSequentialGroup()
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(4, 4, 4)
             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -780,7 +768,7 @@ public class SellPage extends javax.swing.JFrame {
             .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 36, Short.MAX_VALUE)
-            .addContainerGap())
+            .addGap(54, 54, 54))
     );
 
     jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1252,7 +1240,7 @@ public class SellPage extends javax.swing.JFrame {
                 if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
                     new SellTable().update("sellno"+jTextField3.getText(),name, price);
                     retreve("sellno"+jTextField3.getText());
-                    jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+                    jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
                     
                 }
                 else{
@@ -1271,7 +1259,7 @@ public class SellPage extends javax.swing.JFrame {
             else if(new SellTable().add("sellno"+jTextField3.getText(),name, price," 2%",buy_price,type)){
                 item_to_sell++;
                 retreve("sellno"+jTextField3.getText());
-                jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+                jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
                  System.out.println(item_to_sell);
             
              }
@@ -1293,7 +1281,7 @@ public class SellPage extends javax.swing.JFrame {
                 if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
                     new SellTable().update("sellno"+jTextField3.getText(),name, price);
                     retreve("sellno"+jTextField3.getText());
-                    jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+                    jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
                     
                 }
                 else{
@@ -1312,7 +1300,7 @@ public class SellPage extends javax.swing.JFrame {
         else if(new SellTable().add("sellno"+jTextField3.getText(),name, price," 2%",buy_price,type)){
             item_to_sell++;
             retreve("sellno"+jTextField3.getText());
-            jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+            jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
             System.out.println(item_to_sell);
             
         }
@@ -1469,14 +1457,14 @@ public class SellPage extends javax.swing.JFrame {
                 
                 new SellTable().update("sellno"+jTextField3.getText(),name, price);
                 retreve("sellno"+jTextField3.getText());
-                jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+                jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
                 
             }
             ////before experimenting
             else if(new SellTable().add("sellno"+jTextField3.getText(),name, price," 2%",buy_price,type)){
                 item_to_sell++;
                 retreve("sellno"+jTextField3.getText());
-                jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+                jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
                 System.out.println(item_to_sell);
                 
             }
@@ -1504,14 +1492,14 @@ public class SellPage extends javax.swing.JFrame {
                     if(new SellTable().delete(id,"sellno"+jTextField3.getText())){
                     item_to_sell--;
                     retreve("sellno"+jTextField3.getText());
-                    jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+                    jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
                     }
                 }
                 else if(Integer.parseInt(qua)!=1){
                     if(new SellTable().updateSell("sellno"+jTextField3.getText(),id,perprice)){
                         item_to_sell--;
                         retreve("sellno"+jTextField3.getText());
-                        jTextField2.setText(total("sellno"+jTextField3.getText())+"tk");
+                        jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
                     }
                     
                 }
@@ -1710,9 +1698,9 @@ public class SellPage extends javax.swing.JFrame {
         else if(tou>80 && tou<=90) siz =  2800;
         else if(tou>90 && tou<=10) siz =  3100;*/
         
-        int siz = 36 * tou;
+        int siz = 20*tou;
         
-        siz += 250; 
+        siz += 320; 
         
         
         System.out.println("siz   "+siz);
@@ -2100,11 +2088,6 @@ public class SellPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        CheckInOut c = new CheckInOut();
-        c.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
         new SellTable().dropTable("sellno"+jTextField3.getText());
@@ -2213,7 +2196,7 @@ jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
         float t = Float.parseFloat(jTextField7.getText());
         float total =total("sellno"+jTextField3.getText());
         total = total + (total*t)/100;
-        jTextField2.setText(total+"tk");
+        jTextField2.setText(total+" shs");
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -2284,7 +2267,6 @@ jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
     public javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    public javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;

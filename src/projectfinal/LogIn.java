@@ -170,7 +170,7 @@ public class LogIn extends javax.swing.JFrame {
             sell.jButton3.setEnabled(false);
             sell.jButton1.setEnabled(false);
             sell.jButton13.setEnabled(false);
-            sell.jButton7.setEnabled(false);
+            //sell.jButton7.setEnabled(false);
             sell.jButton2.setEnabled(false);
             sell.setVisible(true);
             setVisible(false);
