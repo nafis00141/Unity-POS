@@ -1628,7 +1628,7 @@ public class SellPage extends javax.swing.JFrame {
 
         //code for invoice
         
-        float a=0;
+        double a=0;
         
         int length;
         String sql = "SELECT * FROM "+b;
@@ -1655,135 +1655,150 @@ public class SellPage extends javax.swing.JFrame {
         
         try {
             
-        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/nafis", "root", "");
-        
-        
-        Statement ss = (Statement) con.prepareStatement(sqlnew);
-        
-        Statement s = (Statement) con.prepareStatement(sql);
-        
-        ResultSet rs =s.executeQuery(sql);
-        
-        ResultSet rss =ss.executeQuery(sqlnew);
-        
-        System.out.println("RING here   888888");
-        
-        
-        int tou = 8;
-        
-        if(rss.next()){
-        
-            String sp = rss.getString(1);
+            Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/nafis", "root", "");
 
-            tou = Integer.parseInt(sp);
-        
-       
-        }
-        
-        System.out.println("RING here   9999");
-        
-        
-        Document document = new Document();
-        
-        
-        /*int siz = 380;
-        
-        if(tou>10 && tou<=20) siz = 700;
-        else if(tou>20 && tou<=30) siz =  1000;
-        else if(tou>30 && tou<=40) siz =  1300;
-        else if(tou>40 && tou<=50) siz =  1600;
-        else if(tou>50 && tou<=60) siz =  1900;
-        else if(tou>60 && tou<=70) siz =  2200;
-        else if(tou>70 && tou<=80) siz =  2500;
-        else if(tou>80 && tou<=90) siz =  2800;
-        else if(tou>90 && tou<=10) siz =  3100;*/
-        
-        int siz = 20*tou;
-        
-        siz += 320; 
-        
-        
-        System.out.println("siz   "+siz);
-        
-        Rectangle test = new Rectangle(223,siz);
-        document.setPageSize(test);
-        PdfWriter.getInstance(document,new FileOutputStream("C:\\Recept\\"+b+".pdf"));
-        
-        System.out.println("HEREEE    ");
-        document.open();
-        document.addCreationDate();
-        document.add(new Paragraph("                        INVOICE",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("          "+new Date().toString(),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                      INVOICE NO:"+jTextField3.getText(),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("Product                 Qty          Price         Total",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.UNDERLINE,BaseColor.BLACK)));
-        //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        
-        System.out.println("HEREEE    ");
-        
-        while(rs.next()){
-            String name = rs.getString(2);
-            String qua = rs.getString(3);
-            String rate = rs.getString(4);
-            String amount = rs.getString(6);
-            a = a+ Float.parseFloat(amount);
-            if(name.length()<=25){
-                length = name.length();
+
+            Statement ss = (Statement) con.prepareStatement(sqlnew);
+
+            Statement s = (Statement) con.prepareStatement(sql);
+
+            ResultSet rs =s.executeQuery(sql);
+
+            ResultSet rss =ss.executeQuery(sqlnew);
+
+            System.out.println("RING here   888888");
+
+
+            int tou = 8;
+
+            if(rss.next()){
+
+                String sp = rss.getString(1);
+
+                tou = Integer.parseInt(sp);
+
+
             }
-            else{
-                length = 25;
+
+            System.out.println("RING here   9999");
+
+
+            Document document = new Document();
+
+
+            /*int siz = 380;
+
+            if(tou>10 && tou<=20) siz = 700;
+            else if(tou>20 && tou<=30) siz =  1000;
+            else if(tou>30 && tou<=40) siz =  1300;
+            else if(tou>40 && tou<=50) siz =  1600;
+            else if(tou>50 && tou<=60) siz =  1900;
+            else if(tou>60 && tou<=70) siz =  2200;
+            else if(tou>70 && tou<=80) siz =  2500;
+            else if(tou>80 && tou<=90) siz =  2800;
+            else if(tou>90 && tou<=10) siz =  3100;*/
+
+            int siz = 20*tou;
+
+            siz += 320; 
+
+
+            System.out.println("siz   "+siz);
+
+            Rectangle test = new Rectangle(223,siz);
+            document.setPageSize(test);
+            PdfWriter.getInstance(document,new FileOutputStream("C:\\Recept\\"+b+".pdf"));
+
+            System.out.println("HEREEE    ");
+            document.open();
+            document.addCreationDate();
+            document.add(new Paragraph("                        INVOICE",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("          "+new Date().toString(),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("                      INVOICE NO:"+jTextField3.getText(),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("                 INVOICE BY: " ,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("Product                 Qty          Price         Total",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.UNDERLINE,BaseColor.BLACK)));
+            //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+
+            System.out.println("HEREEE    ");
+
+            while(rs.next()){
+                String name = rs.getString(2);
+                String qua = rs.getString(3);
+                String rate = rs.getString(4);
+                String amount = rs.getString(6);
+                a = a+ Double.parseDouble(amount);
+                if(name.length()<=25){
+                    length = name.length();
+                }
+                else{
+                    length = 25;
+                }
+                
+                double amo = Double.parseDouble(rate);
+
+
+                rate = String.format("%,.2f", amo);
+                
+                amo = Double.parseDouble(amount);
+                
+                amount = String.format("%,.2f", amo);
+                
+                document.add(new Paragraph(name.substring(0,length),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+                document.add(new Paragraph("                             "+qua+"           "+rate+"          "+amount+"",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+                //document.add(new Paragraph("                                        ",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+                //t.addCell(rate);
+                //t.addCell(amount);
+
             }
-            document.add(new Paragraph(name.substring(0,length),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-            document.add(new Paragraph("                               "+qua+"             "+rate+"            "+amount+"",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-            //document.add(new Paragraph("                                        ",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-            //t.addCell(rate);
-            //t.addCell(amount);
-            
-        }
-        
-        System.out.println("HEREEE    now");
-        
-        //document.add(new Paragraph("                                   "));
-        //document.add(new Paragraph("                                   "));
-        document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                                            Total = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        
-        //document.add(new Paragraph("                                   "));
-        //document.add(new Paragraph("                                   "));
-        if(jTextField6.getText().equalsIgnoreCase("")==false){
-            float dis = Float.parseFloat(jTextField6.getText());
-            a=a-((a*dis)/100);
-        
-            document.add(new Paragraph("Customer ID ="+jTextField4.getText()+" After Discount = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        }
-        if(jTextField8.getText().equalsIgnoreCase("")==false){
-            float dis = Float.parseFloat(jTextField8.getText());
-            a=a-((a*dis)/100);
-        
-            document.add(new Paragraph("Discount ="+jTextField8.getText()+"% After Discount = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        }
-        
-        if(jTextField7.getText().equalsIgnoreCase("")==false){
-            float vat = Float.parseFloat(jTextField7.getText());
-            float v = (a*vat)/100;
-            a=a+((a*vat)/100);
-        
-            document.add(new Paragraph("Vat ="+jTextField7.getText()+"%         Vat = "+v+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-            
-        }
-        document.add(new Paragraph("                                 Net Amount = "+a+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                          Receive Amount = "+rec+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("                         Returned Amount = "+(rec-a)+" shs   ",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        
-        //document.add(new Paragraph(" "));
-        document.add(new Paragraph(" "));
-        document.add(new Paragraph("         Goods Once Sold Can not be Return",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        document.add(new Paragraph("             Unity Point Of Sales System",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-        
-        
-        
-        document.close();
+
+            System.out.println("HEREEE    now");
+
+            //document.add(new Paragraph("                                   "));
+            //document.add(new Paragraph("                                   "));
+            String am = String.format("%,.2f", a);
+            document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("                                         Total = "+am+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+
+            //document.add(new Paragraph("                                   "));
+            //document.add(new Paragraph("                                   "));
+            if(jTextField6.getText().equalsIgnoreCase("")==false){
+                float dis = Float.parseFloat(jTextField6.getText());
+                a=a-((a*dis)/100);
+                am = String.format("%,.2f", a);
+                document.add(new Paragraph("Customer ID ="+jTextField4.getText()+" After Discount = "+am+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            }
+            if(jTextField8.getText().equalsIgnoreCase("")==false){
+                float dis = Float.parseFloat(jTextField8.getText());
+                a=a-((a*dis)/100);
+                am = String.format("%,.2f", a);
+                document.add(new Paragraph("Discount ="+jTextField8.getText()+"% After Discount = "+am+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            }
+
+            if(jTextField7.getText().equalsIgnoreCase("")==false){
+                double vat = Float.parseFloat(jTextField7.getText());
+                double v = (a*vat)/100;
+                a=a+((a*vat)/100);
+                am = String.format("%,.2f", v);
+                document.add(new Paragraph("Vat ="+jTextField7.getText()+"%       Vat = "+am+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+
+            }
+            am = String.format("%,.2f", a);
+            document.add(new Paragraph("                              Net Amount = "+am+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            am = String.format("%,.2f", rec);
+            document.add(new Paragraph("                       Receive Amount = "+am+" shs",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            am = String.format("%,.2f", (rec-a));
+            document.add(new Paragraph("                      Returned Amount = "+am+" shs   ",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+
+            //document.add(new Paragraph(" "));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("         Goods Once Sold Can not be Return",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("             Unity Point Of Sales System",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+
+
+
+            document.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"problem in memoo");
         }
