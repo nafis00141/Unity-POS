@@ -126,6 +126,22 @@ public class SellPage extends javax.swing.JFrame {
     }
     
     
+    void header(Document document,String name){
+        try {
+            document.addCreationDate();
+            document.add(new Paragraph("                        INVOICE",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("          "+new Date().toString(),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("                      INVOICE NO:"+jTextField3.getText(),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("               INVOICE BY: "+name,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            document.add(new Paragraph("Product                 Qty          Price         Total",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.UNDERLINE,BaseColor.BLACK)));
+            //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
     public void retreve(String a){
        DefaultTableModel dm = new SellTable().getData(a);
        
@@ -1635,6 +1651,7 @@ public class SellPage extends javax.swing.JFrame {
         
         String sqlnew = "SELECT count(*) FROM "+b;
         
+        String sqlname = "SELECT `First name`,`Last name` FROM `employee` WHERE `id` = "+idd;
         
         File theDir = new File("C:\\Recept");
 
@@ -1665,6 +1682,25 @@ public class SellPage extends javax.swing.JFrame {
             ResultSet rs =s.executeQuery(sql);
 
             ResultSet rss =ss.executeQuery(sqlnew);
+            
+            
+            String fname = "";
+            String lname = "";
+            String seller_name = "";
+            
+            if(idd!=-1){
+                Statement sss = (Statement) con.prepareStatement(sqlname);
+                ResultSet rs_name =sss.executeQuery(sqlname);
+                if(rs_name.next()){
+                    fname = rs_name.getString(1);
+                    lname = rs_name.getString(2);
+                }
+                seller_name = fname + " " + lname;
+            }
+            else{
+                seller_name = "Guest";
+            }
+            
 
             System.out.println("RING here   888888");
 
@@ -1686,9 +1722,9 @@ public class SellPage extends javax.swing.JFrame {
             Document document = new Document();
 
 
-            /*int siz = 380;
+            int siz = 380;
 
-            if(tou>10 && tou<=20) siz = 700;
+            /*if(tou>10 && tou<=20) siz = 700;
             else if(tou>20 && tou<=30) siz =  1000;
             else if(tou>30 && tou<=40) siz =  1300;
             else if(tou>40 && tou<=50) siz =  1600;
@@ -1698,9 +1734,9 @@ public class SellPage extends javax.swing.JFrame {
             else if(tou>80 && tou<=90) siz =  2800;
             else if(tou>90 && tou<=10) siz =  3100;*/
 
-            int siz = 20*tou;
+            /*int siz = 20*tou;
 
-            siz += 320; 
+            siz += 320; */
 
 
             System.out.println("siz   "+siz);
@@ -1711,7 +1747,7 @@ public class SellPage extends javax.swing.JFrame {
 
             System.out.println("HEREEE    ");
             document.open();
-            document.addCreationDate();
+            /*document.addCreationDate();
             document.add(new Paragraph("                        INVOICE",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
             //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
             document.add(new Paragraph("          "+new Date().toString(),FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
@@ -1719,10 +1755,25 @@ public class SellPage extends javax.swing.JFrame {
             document.add(new Paragraph("                 INVOICE BY: " ,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
             document.add(new Paragraph("Product                 Qty          Price         Total",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.UNDERLINE,BaseColor.BLACK)));
             //document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+            */
+            header(document,seller_name);
+            
+            System.out.println(seller_name);
 
             System.out.println("HEREEE    ");
+            
+            int ck = 0,page=1;
 
             while(rs.next()){
+                ck++;
+                if(ck==9){
+                    ck = 1;
+                    document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+                    document.add(new Paragraph("                  Page Number: "+ page++ ,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+                    document.newPage();
+                    System.out.println(seller_name);
+                    header(document,seller_name);
+                }
                 String name = rs.getString(2);
                 String qua = rs.getString(3);
                 String rate = rs.getString(4);
@@ -1750,6 +1801,13 @@ public class SellPage extends javax.swing.JFrame {
                 //t.addCell(rate);
                 //t.addCell(amount);
 
+            }
+            
+            if(ck>=6){
+                document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+                document.add(new Paragraph("                Page Number: "+ page++ ,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
+                document.newPage();
+                header(document,seller_name);
             }
 
             System.out.println("HEREEE    now");
@@ -1795,7 +1853,7 @@ public class SellPage extends javax.swing.JFrame {
             document.add(new Paragraph("         Goods Once Sold Can not be Return",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
             document.add(new Paragraph("--------------------------------------------------------",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
             document.add(new Paragraph("             Unity Point Of Sales System",FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
-
+            document.add(new Paragraph("                Page Number: "+ page++ ,FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, Font.NORMAL,BaseColor.BLACK)));
 
 
             document.close();
