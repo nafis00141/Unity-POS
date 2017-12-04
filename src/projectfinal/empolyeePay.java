@@ -47,7 +47,7 @@ public class empolyeePay {
     public void update(String id,String money){
         
         String sql = "UPDATE `employeepay` SET `money`='"+money+"' WHERE `empid`='"+id+"'"; 
-        String sql1 = "UPDATE `employee` SET `last_paid`=NOW() WHERE `id`='"+id+"'";
+        String sql1 = "UPDATE `employee` SET `last_paid`=NOW() , `months_worked` = `months_worked` + 1 WHERE `id`='"+id+"'";
         
         try{
             
@@ -73,7 +73,7 @@ public class empolyeePay {
             
             System.out.println(money);
             String sql = "INSERT INTO `employeepay`(`no`, `empid`, `money`) VALUES (NULL,'"+id+"','"+money+"')";
-            String sql1 = "UPDATE `employee` SET `last_paid`=NOW() WHERE `id`='"+id+"'";
+            String sql1 = "UPDATE `employee` SET `last_paid`=NOW() , `months_worked` = `months_worked` + 1  WHERE `id`='"+id+"'";
         
         try{
             
