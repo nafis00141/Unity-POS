@@ -75,7 +75,12 @@ public class StockUpdater {
     
     public DefaultTableModel getData(){
         
-        DefaultTableModel dm = new DefaultTableModel();
+        DefaultTableModel dm = new DefaultTableModel(){
+             @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         dm.addColumn("ID");
         dm.addColumn("Name");
         dm.addColumn("Stock");
