@@ -208,7 +208,7 @@ public class SellPage extends javax.swing.JFrame {
     
     public void retreve(){
         DefaultTableModel dm = new StockUpdater().getData();
-        
+  
         jTable1.setModel(dm);
         
     }
