@@ -1234,99 +1234,108 @@ public class SellPage extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             try{
                 String qua = jTable1.getValueAt(0,2).toString();
+                int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
         
         
-        
-        if(Integer.parseInt(qua)==0){
-            JOptionPane.showMessageDialog(null, "Out Of Stock", "Warning", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else if(Integer.parseInt(qua)<=5){
-            JOptionPane.showMessageDialog(null, "Stock is Low", "Warning", JOptionPane.INFORMATION_MESSAGE);
-            String name = jTable1.getValueAt(0,1).toString();
-            float price = Float.parseFloat(jTable1.getValueAt(0,3).toString());
-            float buy_price = Float.parseFloat(jTable1.getValueAt(0,6).toString());
-            String type = jTable1.getValueAt(0,4).toString();
-        
-        
-        
-            
-            if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
-            
-            int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
-                
-                if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
-                    new SellTable().update("sellno"+jTextField3.getText(),name, price);
-                    retreve("sellno"+jTextField3.getText());
-                    jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
-                    
-                }
-                else{
+                if(Integer.parseInt(qua)==0){
+                    //JOptionPane.showMessageDialog(null, "Out Of Stock", "Warning", JOptionPane.INFORMATION_MESSAGE);
                     JOptionPane.showMessageDialog(null,"no stock left");
                     int n = JOptionPane.showConfirmDialog(null,"Would you like update Stock?","",JOptionPane.YES_NO_OPTION);
-            
+
                     System.out.println("hoho "+n);
-                    
+
                     if(n==0){
-                        new updateStock().setVisible(true);
+                        new updateStock(id).setVisible(true);
                     }
-                
+
                 }
-            }
-            ////before experimenting
-            else if(new SellTable().add("sellno"+jTextField3.getText(),name, price," 2%",buy_price,type)){
-                item_to_sell++;
-                retreve("sellno"+jTextField3.getText());
-                jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
-                 System.out.println(item_to_sell);
-            
-             }
-             else{
-                JOptionPane.showMessageDialog(null, "problem");
-                }
-          }
-        else{
-            String name = jTable1.getValueAt(0,1).toString();
-             float price = Float.parseFloat(jTable1.getValueAt(0,3).toString());
-            float buy_price = Float.parseFloat(jTable1.getValueAt(0,6).toString());
-            String type = jTable1.getValueAt(0,4).toString();
-        
-            
-            if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
-            
-                int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
-                
-                if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
-                    new SellTable().update("sellno"+jTextField3.getText(),name, price);
-                    retreve("sellno"+jTextField3.getText());
-                    jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
-                    
+                else if(Integer.parseInt(qua)<=5){
+                    JOptionPane.showMessageDialog(null, "Stock is Low", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                    String name = jTable1.getValueAt(0,1).toString();
+                    float price = Float.parseFloat(jTable1.getValueAt(0,3).toString());
+                    float buy_price = Float.parseFloat(jTable1.getValueAt(0,6).toString());
+                    String type = jTable1.getValueAt(0,4).toString();
+
+
+
+
+                    if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
+
+                    int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
+
+                        if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
+                            new SellTable().update("sellno"+jTextField3.getText(),name, price);
+                            retreve("sellno"+jTextField3.getText());
+                            jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
+
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null,"no stock left");
+                            int n = JOptionPane.showConfirmDialog(null,"Would you like update Stock?","",JOptionPane.YES_NO_OPTION);
+
+                            System.out.println("hoho "+n);
+
+                            if(n==0){
+                                new updateStock(id).setVisible(true);
+                            }
+
+                        }
+                    }
+                    ////before experimenting
+                    else if(new SellTable().add("sellno"+jTextField3.getText(),name, price," 2%",buy_price,type)){
+                        item_to_sell++;
+                        retreve("sellno"+jTextField3.getText());
+                        jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
+                         System.out.println(item_to_sell);
+
+                     }
+                     else{
+                        JOptionPane.showMessageDialog(null, "problem");
+                        }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"no stock left");
-                    int n = JOptionPane.showConfirmDialog(null,"Would you like update Stock?","",JOptionPane.YES_NO_OPTION);
-            
-                    System.out.println("hoho "+n);
-                    
-                    if(n==0){
-                        new updateStock().setVisible(true);
+                    String name = jTable1.getValueAt(0,1).toString();
+                    float price = Float.parseFloat(jTable1.getValueAt(0,3).toString());
+                    float buy_price = Float.parseFloat(jTable1.getValueAt(0,6).toString());
+                    String type = jTable1.getValueAt(0,4).toString();
+
+
+                    if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
+
+                        int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
+
+                        if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
+                            new SellTable().update("sellno"+jTextField3.getText(),name, price);
+                            retreve("sellno"+jTextField3.getText());
+                            jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
+
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null,"no stock left");
+                            int n = JOptionPane.showConfirmDialog(null,"Would you like update Stock?","",JOptionPane.YES_NO_OPTION);
+
+                            System.out.println("hoho "+n);
+
+                            if(n==0){
+                                new updateStock(id).setVisible(true);
+                            }
+
+                        }
                     }
-                
+                    ////before experimenting
+                    else if(new SellTable().add("sellno"+jTextField3.getText(),name, price," 2%",buy_price,type)){
+                        item_to_sell++;
+                        retreve("sellno"+jTextField3.getText());
+                        jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
+                        System.out.println(item_to_sell);
+
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "problem");
+                    }
+
+
                 }
-            }
-        ////before experimenting
-        else if(new SellTable().add("sellno"+jTextField3.getText(),name, price," 2%",buy_price,type)){
-            item_to_sell++;
-            retreve("sellno"+jTextField3.getText());
-            jTextField2.setText(total("sellno"+jTextField3.getText())+" shs");
-            System.out.println(item_to_sell);
-            
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "problem");
-        }
-            
-            
-        }
             jTextField1.setText("");
             }catch(Exception e){
                 
@@ -1348,7 +1357,9 @@ public class SellPage extends javax.swing.JFrame {
         
         
         String qua = jTable1.getValueAt(jTable1.getSelectedRow(),2).toString();
+        int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
         
+        System.out.println("send" + id);
         
         
         if(Integer.parseInt(qua)==0){
@@ -1358,7 +1369,7 @@ public class SellPage extends javax.swing.JFrame {
             System.out.println("hoho "+n);
                     
             if(n==0){
-                new updateStock().setVisible(true);
+                new updateStock(id).setVisible(true);
             }
         }
         else if(Integer.parseInt(qua)<=5){
@@ -1386,7 +1397,7 @@ public class SellPage extends javax.swing.JFrame {
                     System.out.println("hoho "+n);
                     
                     if(n==0){
-                        new updateStock().setVisible(true);
+                        new updateStock(id).setVisible(true);
                     }
                     
                 }
@@ -1427,7 +1438,7 @@ public class SellPage extends javax.swing.JFrame {
                     System.out.println("hoho "+n);
                     
                     if(n==0){
-                        new updateStock().setVisible(true);
+                        new updateStock(id).setVisible(true);
                     }
                 
                 }
