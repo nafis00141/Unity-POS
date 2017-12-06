@@ -42,6 +42,10 @@ public class Stock extends javax.swing.JFrame {
         
     }
     
+    
+    public boolean isNumeric(String s) {  
+        return s != null && s.matches("[-+]?\\d*\\.?\\d+");  
+    }  
    
     
     
@@ -447,7 +451,7 @@ public class Stock extends javax.swing.JFrame {
         String barcode = jTable1.getValueAt(jTable1.getSelectedRow(),7).toString();
         
         jTextField1.setText(name);
-        jTextField2.setText(stock);
+        //jTextField2.setText(stock);
         jTextField3.setText(price);
         jTextField4.setText(type);
         jTextField5.setText(weight);
@@ -461,29 +465,36 @@ public class Stock extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int index = jTable1.getSelectedRow();
-        String id =jTable1.getValueAt(index,0).toString();
-        if(new StockUpdater().update(id, jTextField1.getText(), Integer.parseInt(jTextField2.getText()), Float.parseFloat(jTextField3.getText()), jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText(),iddd)){
-            
-            
-            
+        
+        if(isNumeric(jTextField2.getText().toString())){
+            int index = jTable1.getSelectedRow();
+            String id =jTable1.getValueAt(index,0).toString();
+            if(new StockUpdater().update(id, jTextField1.getText(), Integer.parseInt(jTextField2.getText()), Float.parseFloat(jTextField3.getText()), jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText(),iddd)){
 
-            JOptionPane.showMessageDialog(null,"updated");
-            retreve();
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-            jTextField7.setText("");
-            jTextField8.setText("");
-            selp.retreve();
-            
+
+
+
+                JOptionPane.showMessageDialog(null,"updated");
+                retreve();
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField5.setText("");
+                jTextField6.setText("");
+                jTextField7.setText("");
+                jTextField8.setText("");
+                selp.retreve();
+
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"not updated");
+            }
         }
         else{
-            JOptionPane.showMessageDialog(null,"not updated");
+            JOptionPane.showMessageDialog(null,"Add New Stock");
         }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -607,7 +618,7 @@ public class Stock extends javax.swing.JFrame {
     public javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    public javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

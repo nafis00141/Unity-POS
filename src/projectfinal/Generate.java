@@ -153,7 +153,7 @@ public class Generate extends javax.swing.JFrame  {
         String a = jTextField1.getText();
         
         if(a.equalsIgnoreCase("")==false && jTextField2.getText().equalsIgnoreCase("")==false){
-        File theDir = new File("E:\\Barcode");
+        File theDir = new File("C:\\Barcode");
 
         // if the directory does not exist, create it
         if (!theDir.exists()) {
@@ -184,7 +184,7 @@ public class Generate extends javax.swing.JFrame  {
         barcode.setBarHeight(60);
         barcode.setBarWidth(2);
         
-        File imgFile = new File("E:\\Barcode\\"+jTextField2.getText()+".png");
+        File imgFile = new File("C:\\Barcode\\"+jTextField2.getText()+".png");
 
         try {
             //Write the bar code to PNG file
@@ -205,7 +205,7 @@ public class Generate extends javax.swing.JFrame  {
         System.out.println(a);
         
         
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Barcode\\"+jTextField2.getText()+".png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Barcode\\"+jTextField2.getText()+".png"));
         
         //jTextField1.setText("");
         //jTextField2.setText("");

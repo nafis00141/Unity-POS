@@ -57,15 +57,15 @@ public class SellPage extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     
-    public static int idd;
+    public static int idd,acc_type;
     
-    public SellPage(int i) {
+    public SellPage(int i,int account_type) {
         initComponents();
         retreve();
         choice();
         
         idd = i;
-        
+        acc_type = account_type;
         //so that int choice have a valu;
         new Thread(){
             
@@ -1205,6 +1205,7 @@ public class SellPage extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        Stock st =  new Stock(idd,this);
+       if(acc_type!=1) st.jButton6.setVisible(false);
        st.setVisible(true);
        
        
@@ -1352,6 +1353,13 @@ public class SellPage extends javax.swing.JFrame {
         
         if(Integer.parseInt(qua)==0){
             JOptionPane.showMessageDialog(null, "Out Of Stock", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            int n = JOptionPane.showConfirmDialog(null,"Would you like update Stock?","",JOptionPane.YES_NO_OPTION);
+            
+            System.out.println("hoho "+n);
+                    
+            if(n==0){
+                new updateStock().setVisible(true);
+            }
         }
         else if(Integer.parseInt(qua)<=5){
             JOptionPane.showMessageDialog(null, "Stock is Low", "Warning", JOptionPane.INFORMATION_MESSAGE);
@@ -2211,7 +2219,7 @@ public class SellPage extends javax.swing.JFrame {
                     cc.jTextField5.setText("");
                     dispose();
                     dropprevious();
-                    SellPage a = new SellPage(idd);
+                    SellPage a = new SellPage(idd,acc_type);
                     a.setVisible(true);
                     cc.dispose();
                     
@@ -2318,7 +2326,7 @@ jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-                new SellPage(idd).setVisible(true);
+                new SellPage(idd,acc_type).setVisible(true);
             }
         });
     }

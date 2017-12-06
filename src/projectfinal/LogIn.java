@@ -76,7 +76,7 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager", "Employee", "Guest" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager", "Director", "Employee", "Guest" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,7 +163,7 @@ public class LogIn extends javax.swing.JFrame {
         //System.out.println(pass);
         else if(choice.equalsIgnoreCase("guest")){
             
-            SellPage sell = new SellPage(-1);
+            SellPage sell = new SellPage(-1,2);
             sell.jLabel13.setText(choice);
             sell.jButton4.setEnabled(false);
             sell.jButton12.setEnabled(false);
@@ -197,7 +197,45 @@ public class LogIn extends javax.swing.JFrame {
                     
                     System.out.println(id);
                     
-                    SellPage sell = new SellPage(id);
+                    SellPage sell = new SellPage(id,2);
+                    sell.setVisible(true);
+                    setVisible(false);
+                
+                }
+                else{
+                
+                    JOptionPane.showMessageDialog(null,"Wrong Username or Password", "Access Denied",JOptionPane.ERROR_MESSAGE);
+                
+                }
+            
+            
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else if(choice.equalsIgnoreCase("Director")){
+            
+            
+            
+            String sql="SELECT * FROM  `employee` WHERE  `First name` LIKE  '"+jTextField1.getText()+"' AND `Post` LIKE  'Director' AND  `password` =  '"+pass+"'";
+        
+            try{
+            
+                Connection con= (Connection) DriverManager.getConnection(conString, username, passward);
+            
+                Statement s =(Statement) con.prepareStatement(sql);
+            
+            
+            
+                ResultSet rs=s.executeQuery(sql);
+            
+                if(rs.next()){
+                    
+                    int id = Integer.parseInt( rs.getString(1));
+                    
+                    System.out.println(id);
+                    
+                    SellPage sell = new SellPage(id,1);
                     sell.setVisible(true);
                     setVisible(false);
                 
@@ -236,7 +274,7 @@ public class LogIn extends javax.swing.JFrame {
                     
                     System.out.println(id);
                     
-                    SellPage sell = new SellPage(id);
+                    SellPage sell = new SellPage(id,2);
                     sell.jButton3.setEnabled(false);
                     sell.jButton1.setEnabled(false);
                     sell.jButton13.setEnabled(false);
