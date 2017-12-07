@@ -1245,7 +1245,7 @@ public class SellPage extends javax.swing.JFrame {
                     System.out.println("hoho "+n);
 
                     if(n==0){
-                        new updateStock(id).setVisible(true);
+                        new updateStock(id,this,idd).setVisible(true);
                     }
 
                 }
@@ -1276,7 +1276,7 @@ public class SellPage extends javax.swing.JFrame {
                             System.out.println("hoho "+n);
 
                             if(n==0){
-                                new updateStock(id).setVisible(true);
+                                new updateStock(id,this,idd).setVisible(true);
                             }
 
                         }
@@ -1317,7 +1317,7 @@ public class SellPage extends javax.swing.JFrame {
                             System.out.println("hoho "+n);
 
                             if(n==0){
-                                new updateStock(id).setVisible(true);
+                                new updateStock(id,this,idd).setVisible(true);
                             }
 
                         }
@@ -1369,7 +1369,7 @@ public class SellPage extends javax.swing.JFrame {
             System.out.println("hoho "+n);
                     
             if(n==0){
-                new updateStock(id).setVisible(true);
+                new updateStock(id,this,idd).setVisible(true);
             }
         }
         else if(Integer.parseInt(qua)<=5){
@@ -1397,7 +1397,7 @@ public class SellPage extends javax.swing.JFrame {
                     System.out.println("hoho "+n);
                     
                     if(n==0){
-                        new updateStock(id).setVisible(true);
+                        new updateStock(id,this,idd).setVisible(true);
                     }
                     
                 }
@@ -1438,7 +1438,7 @@ public class SellPage extends javax.swing.JFrame {
                     System.out.println("hoho "+n);
                     
                     if(n==0){
-                        new updateStock(id).setVisible(true);
+                        new updateStock(id,this,idd).setVisible(true);
                     }
                 
                 }

@@ -17,9 +17,13 @@ public class updateStock extends javax.swing.JFrame {
      * Creates new form updateStock
      */
     
-    public static int id;
-    public updateStock(int idd) {
+    public static int id,acc_id;
+    public static SellPage sp;
+    
+    public updateStock(int idd,SellPage s,int ac_id) {
         id = idd;
+        sp = s;
+        acc_id = ac_id;
         initComponents();
         System.out.println(id);
     }
@@ -82,7 +86,15 @@ public class updateStock extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(isNumeric(jTextField1.getText().toString())){
-            
+            if(acc_id!=-1){
+                StockUpdater su = new StockUpdater();
+                su.update(id,Integer.parseInt(jTextField1.getText().toString()),acc_id);
+                sp.retreve();
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"You Are Not Allowed to update");
+            }
         }
         else{
             JOptionPane.showMessageDialog(null,"Add New Stock");
@@ -119,7 +131,7 @@ public class updateStock extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new updateStock(id).setVisible(true);
+                new updateStock(id,sp,acc_id).setVisible(true);
             }
         });
     }

@@ -178,6 +178,61 @@ public class StockUpdater {
         
     }
     
+    public boolean update(int iid,int stock,int di){
+        
+        
+        String sql = "select stock from `product` WHERE `id`='"+iid+"'";
+        int pre_stock = 0;
+        
+        try{
+            
+            Connection con= (Connection) DriverManager.getConnection(conString, username, passward);
+            
+            Statement s =(Statement) con.prepareStatement(sql);
+            
+            ResultSet rs =s.executeQuery(sql);
+            
+            if(rs.next()){
+                pre_stock = Integer.parseInt(rs.getString(1));
+            }
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+            
+        }
+        
+        
+        sql="UPDATE `product` SET `stock`='"+stock+"' WHERE `id`='"+iid+"'";
+        
+        
+        
+        try{
+            
+            Connection con= (Connection) DriverManager.getConnection(conString, username, passward);
+            
+            Statement s =(Statement) con.prepareStatement(sql);
+            
+            s.execute(sql);
+            
+            sql = "INSERT INTO `stockhistory`(`eid`, `sid`, `Operation`, `Time`, `stock before update`, `stock after update`) VALUES ('"+di+"','"+iid+"','updated',NOW(),'"+pre_stock+"','"+stock+"')";
+            
+            
+            System.out.println(sql);
+            
+            s =(Statement) con.prepareStatement(sql);
+            
+            s.execute(sql);
+            
+            
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+        
+    }
+    
     
     public boolean delete(String id,int di){
         
