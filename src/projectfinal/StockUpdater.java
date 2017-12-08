@@ -148,7 +148,7 @@ public class StockUpdater {
         }
         
         
-        sql="UPDATE `product` SET `name`='"+name+"',`stock`='"+stock+"',`price`='"+price+"',`type`='"+type+"',`weight`='"+weight+"',`buy price`='"+buy_price+"',`barcode`='"+barcode+"' WHERE `id`='"+id+"'";
+        sql="UPDATE `product` SET `name`='"+name+"',`stock`=`stock` +'"+stock+"',`price`='"+price+"',`type`='"+type+"',`weight`='"+weight+"',`buy price`='"+buy_price+"',`barcode`='"+barcode+"' WHERE `id`='"+id+"'";
         
         
         
@@ -160,7 +160,21 @@ public class StockUpdater {
             
             s.execute(sql);
             
-            sql = "INSERT INTO `stockhistory`(`eid`, `sid`, `Operation`, `Time`, `stock before update`, `stock after update`) VALUES ('"+di+"','"+id+"','updated',NOW(),'"+pre_stock+"','"+stock+"')";
+            sql = "select stock from `product` WHERE `id`='"+id+"'";
+            
+            s =(Statement) con.prepareStatement(sql);
+            
+            ResultSet rs =s.executeQuery(sql);
+            
+            int now_stock = 0;
+            
+            if(rs.next()){
+                now_stock = Integer.parseInt(rs.getString(1));
+            }
+            
+            
+            
+            sql = "INSERT INTO `stockhistory`(`eid`, `sid`, `Operation`, `Time`, `stock before update`, `stock after update`) VALUES ('"+di+"','"+id+"','updated',NOW(),'"+pre_stock+"','"+now_stock+"')";
             
             
             System.out.println(sql);

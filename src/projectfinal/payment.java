@@ -68,7 +68,7 @@ public class payment extends javax.swing.JFrame {
 
 
                 jTextField7.setText(fname+" "+lname);
-                jTextField3.setText(mone);
+                jTextField3.setText(String.format("%,.2f", Double.parseDouble(mone)));
                 jTextField4.setText(last_paid);
                 jTextField2.setText(months_worked);
 

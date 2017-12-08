@@ -320,7 +320,7 @@ public class Employee extends javax.swing.JFrame {
         jTextField2.setText(first_name);
         jTextField3.setText(last_name);
         jTextField4.setText(post);
-        jTextField5.setText(salary);
+        jTextField5.setText(String.format("%,.2f", Double.parseDouble(salary)));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

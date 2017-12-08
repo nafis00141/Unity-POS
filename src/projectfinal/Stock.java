@@ -142,7 +142,7 @@ public class Stock extends javax.swing.JFrame {
         jLabel3.setText("New Stock");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel2.setText("Price");
+        jLabel2.setText("Sell Price");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Type");
@@ -174,8 +174,8 @@ public class Stock extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel9)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -452,10 +452,10 @@ public class Stock extends javax.swing.JFrame {
         
         jTextField1.setText(name);
         //jTextField2.setText(stock);
-        jTextField3.setText(price);
+        jTextField3.setText(String.format("%,.2f", Double.parseDouble(price)));
         jTextField4.setText(type);
         jTextField5.setText(weight);
-        jTextField6.setText(buy_price);
+        jTextField6.setText(String.format("%,.2f", Double.parseDouble(buy_price)));
         jTextField7.setText(barcode);
         jTextField8.setText(stock);
         //id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
