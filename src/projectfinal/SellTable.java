@@ -150,7 +150,35 @@ public class SellTable {
     public boolean update(String a,String name,float perprice){
         
         
+        /*UPDATE `sellno39` SET `quantity`=`quantity`+5 , `price` = `perprice`*5 WHERE `name` = 'Elit Choco Eggy' AND `perprice` = 448*/
+        
         String sql = "UPDATE "+a+" SET quantity=quantity+1,price=price+perprice  WHERE name='"+name+"' AND perprice='"+perprice+"'";
+        
+        try{
+            
+            Connection con= (Connection) DriverManager.getConnection(conString, username, passward);
+            
+            Statement s =(Statement) con.prepareStatement(sql);
+            
+            s.execute(sql);
+            
+            
+            
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    public boolean update(String a,String name,float perprice,int st){
+        
+        
+        /*UPDATE `sellno39` SET `quantity`=+5 , `price` = `perprice`*5 WHERE `name` = 'Elit Choco Eggy' AND `perprice` = 448*/
+        
+        String sql = "UPDATE "+a+" SET `quantity`="+st+" , `price` = `perprice`*"+st+"  WHERE name='"+name+"' AND perprice='"+perprice+"'";
+        System.out.println(sql);
         
         try{
             

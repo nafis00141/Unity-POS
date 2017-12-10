@@ -1044,7 +1044,7 @@ public class SellPage extends javax.swing.JFrame {
 
     jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-    jButton17.setText("Retreve");
+    jButton17.setText("Enter Stock");
     jButton17.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton17ActionPerformed(evt);
@@ -1126,14 +1126,11 @@ public class SellPage extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel16)
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel16)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addGap(0, 0, Short.MAX_VALUE)
                                                     .addComponent(jButton19)))
@@ -2303,7 +2300,23 @@ jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        retreve();
+        
+        try{
+            String qua = jTable1.getValueAt(jTable1.getSelectedRow(),2).toString();
+            int id = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+            String name = jTable1.getValueAt(jTable1.getSelectedRow(),1).toString();
+            float price = Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(),3).toString());
+            
+            
+            enterQuantity eq = new enterQuantity(qua, name, price,jTextField3.getText(),this);
+            eq.setVisible(true);
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Select A Product First");
+        }
+        
+        
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -2418,7 +2431,7 @@ jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

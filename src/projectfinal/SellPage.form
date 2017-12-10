@@ -88,16 +88,11 @@
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel12" max="32767" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="jTextField8" min="-2" pref="30" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="jLabel17" min="-2" pref="14" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="jTextField8" min="-2" pref="30" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel17" min="-2" pref="14" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -744,6 +739,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -960,7 +958,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton17">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Retreve"/>
+        <Property name="text" type="java.lang.String" value="Enter Stock"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
