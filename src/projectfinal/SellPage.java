@@ -59,6 +59,7 @@ public class SellPage extends javax.swing.JFrame {
     
     public static int idd,acc_type;
     
+    
     public SellPage(int i,int account_type) {
         initComponents();
         retreve();
