@@ -284,7 +284,7 @@ public class SellPage extends javax.swing.JFrame {
     }
     
     //get sell quantity
-    public int getQua(String name,String price,String a){
+    public float getQua(String name,String price,String a){
         
         String conString ="jdbc:mysql://localhost:3306/nafis";
         String username ="root";
@@ -295,7 +295,7 @@ public class SellPage extends javax.swing.JFrame {
         
        
         String st;
-        int qua=0;
+        float qua=0;
         try{
             
             
@@ -316,7 +316,7 @@ public class SellPage extends javax.swing.JFrame {
                 
                 String quantity = rs.getString(3);
                 
-                qua=Integer.parseInt(quantity);
+                qua= Float.parseFloat(quantity);
                 
                 return qua;
  
@@ -1259,9 +1259,9 @@ public class SellPage extends javax.swing.JFrame {
 
                     if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
 
-                    int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
+                    float sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
 
-                        if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
+                        if(sellquantity < Float.parseFloat(qua)){/// checking if sell quantity gets bigger than product quntity
                             new SellTable().update("sellno"+jTextField3.getText(),name, price);
                             retreve("sellno"+jTextField3.getText());
                             String tot = String.format("%,.2f", (double)total("sellno"+jTextField3.getText()));
@@ -1303,9 +1303,9 @@ public class SellPage extends javax.swing.JFrame {
 
                     if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
 
-                        int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
+                        float sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
 
-                        if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
+                        if(sellquantity < Float.parseFloat(qua)){/// checking if sell quantity gets bigger than product quntity
                             new SellTable().update("sellno"+jTextField3.getText(),name, price);
                             retreve("sellno"+jTextField3.getText());
                             String tot = String.format("%,.2f", (double)total("sellno"+jTextField3.getText()));
@@ -1366,7 +1366,7 @@ public class SellPage extends javax.swing.JFrame {
         System.out.println("send" + id);
         
         
-        if(Integer.parseInt(qua)==0){
+        if(Float.parseFloat(qua)<1){
             JOptionPane.showMessageDialog(null, "Out Of Stock", "Warning", JOptionPane.INFORMATION_MESSAGE);
             int n = JOptionPane.showConfirmDialog(null,"Would you like update Stock?","",JOptionPane.YES_NO_OPTION);
             
@@ -1376,7 +1376,7 @@ public class SellPage extends javax.swing.JFrame {
                 new updateStock(id,this,idd).setVisible(true);
             }
         }
-        else if(Integer.parseInt(qua)<=5){
+        else if(Float.parseFloat(qua)<=5){
             JOptionPane.showMessageDialog(null, "Stock is Low", "Warning", JOptionPane.INFORMATION_MESSAGE);
             String name = jTable1.getValueAt(jTable1.getSelectedRow(),1).toString();
             float price = Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(),3).toString());
@@ -1386,9 +1386,9 @@ public class SellPage extends javax.swing.JFrame {
             
             if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
                 
-                int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
+                float sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
                 
-                if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
+                if(sellquantity < Float.parseFloat(qua)){/// checking if sell quantity gets bigger than product quntity
                     new SellTable().update("sellno"+jTextField3.getText(),name, price);
                     retreve("sellno"+jTextField3.getText());
                     String tot = String.format("%,.2f", (double)total("sellno"+jTextField3.getText()));
@@ -1430,9 +1430,9 @@ public class SellPage extends javax.swing.JFrame {
            
             if(SearchExist(name, price+"","sellno"+jTextField3.getText())){
             
-                int sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
+                float sellquantity = getQua(name, price+"","sellno"+jTextField3.getText());
                 
-                if(sellquantity < Integer.parseInt(qua)){/// checking if sell quantity gets bigger than product quntity
+                if(sellquantity < Float.parseFloat(qua)){/// checking if sell quantity gets bigger than product quntity
                     new SellTable().update("sellno"+jTextField3.getText(),name, price);
                     retreve("sellno"+jTextField3.getText());
                     

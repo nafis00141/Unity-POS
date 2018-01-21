@@ -83,7 +83,7 @@ public class SellTable {
     
     public boolean createtable(String a){
         
-        String sql="CREATE TABLE "+a+"( `no` INT(11) NOT NULL AUTO_INCREMENT , `name` VARCHAR(250) NOT NULL , `quantity` INT(11) NOT NULL , `perprice` FLOAT(10) NOT NULL , `vat` VARCHAR(250) NOT NULL , `price` FLOAT(10) NOT NULL , `buy price` FLOAT(10) NOT NULL ,`type` VARCHAR(250) NOT NULL , PRIMARY KEY (`no`))";
+        String sql="CREATE TABLE "+a+"( `no` INT(11) NOT NULL AUTO_INCREMENT , `name` VARCHAR(250) NOT NULL , `quantity` FLOAT(10) NOT NULL , `perprice` FLOAT(10) NOT NULL , `vat` VARCHAR(250) NOT NULL , `price` FLOAT(10) NOT NULL , `buy price` FLOAT(10) NOT NULL ,`type` VARCHAR(250) NOT NULL , PRIMARY KEY (`no`))";
         
         try{
             
@@ -172,7 +172,7 @@ public class SellTable {
         return false;
     }
     
-    public boolean update(String a,String name,float perprice,int st){
+    public boolean update(String a,String name,float perprice,float st){
         
         
         /*UPDATE `sellno39` SET `quantity`=+5 , `price` = `perprice`*5 WHERE `name` = 'Elit Choco Eggy' AND `perprice` = 448*/

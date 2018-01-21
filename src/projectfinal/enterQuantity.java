@@ -88,10 +88,10 @@ public class enterQuantity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int enQua = Integer.parseInt(jTextField1.getText());
+        double enQua = Double.parseDouble(jTextField1.getText());
         
-        if(enQua<Integer.parseInt(qua)){
-            new SellTable().update("sellno"+table,name, buy_price,enQua);
+        if(enQua<Double.parseDouble(qua)){
+            new SellTable().update("sellno"+table,name, buy_price,(float)enQua);
             sp.retreve("sellno"+table);
             String tot = String.format("%,.2f", (double)sp.total("sellno"+table));
             sp.jTextField2.setText(tot+" shs");

@@ -35,7 +35,7 @@ public class SoldTimeUpdater {
             ResultSet rs =s.executeQuery(sql);
             
             
-            int qua = 0;
+            double qua = 0;
             float sellprice = 0;
             float buyprice = 0;
             while(rs.next()){
@@ -48,10 +48,10 @@ public class SoldTimeUpdater {
                 String buy_price = rs.getString(7);
                 String type = rs.getString(8);
                 
-                qua = qua + Integer.parseInt(quantity);
+                qua = qua + Double.parseDouble(quantity);
                 
-                sellprice = sellprice + Integer.parseInt(quantity) * Float.parseFloat(price);
-                buyprice = buyprice + Integer.parseInt(quantity) * Float.parseFloat(buy_price);
+                sellprice = sellprice + Float.parseFloat(quantity) * Float.parseFloat(price);
+                buyprice = buyprice + Float.parseFloat(quantity) * Float.parseFloat(buy_price);
                 
             }
             
@@ -61,7 +61,7 @@ public class SoldTimeUpdater {
             SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd hh:mm:ss");
             String date= ""+ft.format(dNow);
             
-            sql="INSERT INTO `nafis`.`soldtime` (`id`, `name`, `quantity`, `sellprice`, `buyprice`, `datetime`) VALUES (NULL, '"+a+"', '"+qua+"', '"+sellprice+"', '"+buyprice+"', '"+date+"')";
+            sql="INSERT INTO `nafis`.`soldtime` (`id`, `name`, `quantity`, `sellprice`, `buyprice`, `datetime`) VALUES (NULL, '"+a+"', '"+(float)qua+"', '"+sellprice+"', '"+buyprice+"', '"+date+"')";
             
             try{
                 s = (Statement) con.prepareStatement(sql);

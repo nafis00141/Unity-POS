@@ -123,11 +123,11 @@ public class StockUpdater {
     }
     
     
-    public boolean update(String id,String name,int stock,float price,String type,String weight,String buy_price,String barcode,int di){
+    public boolean update(String id,String name,float stock,float price,String type,String weight,String buy_price,String barcode,int di){
         
         
         String sql = "select stock from `product` WHERE `id`='"+id+"'";
-        int pre_stock = 0;
+        float pre_stock = 0;
         
         try{
             
@@ -138,7 +138,7 @@ public class StockUpdater {
             ResultSet rs =s.executeQuery(sql);
             
             if(rs.next()){
-                pre_stock = Integer.parseInt(rs.getString(1));
+                pre_stock = Float.parseFloat(rs.getString(1));
             }
             
             
@@ -166,10 +166,10 @@ public class StockUpdater {
             
             ResultSet rs =s.executeQuery(sql);
             
-            int now_stock = 0;
+            float now_stock = 0;
             
             if(rs.next()){
-                now_stock = Integer.parseInt(rs.getString(1));
+                now_stock = Float.parseFloat(rs.getString(1));
             }
             
             
@@ -196,7 +196,7 @@ public class StockUpdater {
         
         
         String sql = "select stock from `product` WHERE `id`='"+iid+"'";
-        int pre_stock = 0;
+        float pre_stock = 0;
         
         try{
             
@@ -207,7 +207,7 @@ public class StockUpdater {
             ResultSet rs =s.executeQuery(sql);
             
             if(rs.next()){
-                pre_stock = Integer.parseInt(rs.getString(1));
+                pre_stock = Float.parseFloat(rs.getString(1));
             }
             
             
@@ -217,7 +217,7 @@ public class StockUpdater {
         }
         
         
-        sql="UPDATE `product` SET `stock`='"+stock+"' WHERE `id`='"+iid+"'";
+        sql="UPDATE `product` SET `stock`= `stock` + '"+stock+"' WHERE `id`='"+iid+"'";
         
         
         
@@ -229,7 +229,9 @@ public class StockUpdater {
             
             s.execute(sql);
             
-            sql = "INSERT INTO `stockhistory`(`eid`, `sid`, `Operation`, `Time`, `stock before update`, `stock after update`) VALUES ('"+di+"','"+iid+"','updated',NOW(),'"+pre_stock+"','"+stock+"')";
+            float p = pre_stock + stock;
+            
+            sql = "INSERT INTO `stockhistory`(`eid`, `sid`, `Operation`, `Time`, `stock before update`, `stock after update`) VALUES ('"+di+"','"+iid+"','updated',NOW(),'"+pre_stock+"','"+p+"')";
             
             
             System.out.println(sql);
