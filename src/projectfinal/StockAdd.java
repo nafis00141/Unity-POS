@@ -203,7 +203,7 @@ public class StockAdd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(new StockUpdater().add(jTextField1.getText(),Integer.parseInt(jTextField2.getText()),Float.parseFloat(jTextField3.getText()),jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText(),ddi)){
+        if(new StockUpdater().add(jTextField1.getText(),Float.parseFloat(jTextField2.getText()),Float.parseFloat(jTextField3.getText()),jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText(),ddi)){
             JOptionPane.showMessageDialog(null,"Successfuly Inserted");
             jTextField1.setText("");
             jTextField2.setText("");

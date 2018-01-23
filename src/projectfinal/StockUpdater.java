@@ -23,7 +23,7 @@ public class StockUpdater {
     String username ="root";
     String passward ="";
     
-    public boolean add(String name,int stock,float price,String type,String weight,String buy_price,String barcode,int di){
+    public boolean add(String name,float stock,float price,String type,String weight,String buy_price,String barcode,int di){
         
         String sql="INSERT INTO product(`id`, `name`, `stock`, `price`, `type`, `weight`, `buy price`, `barcode`) VALUES(NULL,'"+name+"','"+stock+"','"+price+"','"+type+"','"+weight+"','"+buy_price+"','"+barcode+"')";
         
