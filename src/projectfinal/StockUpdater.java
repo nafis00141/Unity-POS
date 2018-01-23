@@ -193,7 +193,7 @@ public class StockUpdater {
         
     }
     
-    public boolean update(int iid,int stock,int di){
+    public boolean update(int iid,float stock,int di){
         
         
         String sql = "select stock from `product` WHERE `id`='"+iid+"'";

@@ -88,7 +88,7 @@ public class updateStock extends javax.swing.JFrame {
         if(isNumeric(jTextField1.getText().toString())){
             if(acc_id!=-1){
                 StockUpdater su = new StockUpdater();
-                su.update(id,Integer.parseInt(jTextField1.getText().toString()),acc_id);
+                su.update(id,Float.parseFloat(jTextField1.getText().toString()),acc_id);
                 sp.retreve();
                 this.dispose();
             }
