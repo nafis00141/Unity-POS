@@ -147,10 +147,11 @@ public class StockUpdater {
             
         }
         
+        float bp = Float.parseFloat(buy_price.replace(",", ""));
         
-        sql="UPDATE `product` SET `name`='"+name+"',`stock`=`stock` +'"+stock+"',`price`='"+price+"',`type`='"+type+"',`weight`='"+weight+"',`buy price`='"+buy_price+"',`barcode`='"+barcode+"' WHERE `id`='"+id+"'";
+        sql="UPDATE `product` SET `name`='"+name+"',`stock`=`stock` +'"+stock+"',`price`='"+price+"',`type`='"+type+"',`weight`='"+weight+"',`buy price`='"+bp+"',`barcode`='"+barcode+"' WHERE `id`='"+id+"'";
         
-        
+        System.out.println(sql);
         
         try{
             

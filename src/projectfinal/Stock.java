@@ -469,7 +469,7 @@ public class Stock extends javax.swing.JFrame {
         if(isNumeric(jTextField2.getText().toString())){
             int index = jTable1.getSelectedRow();
             String id =jTable1.getValueAt(index,0).toString();
-            if(new StockUpdater().update(id, jTextField1.getText(), Float.parseFloat(jTextField2.getText()), Float.parseFloat(jTextField3.getText()), jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText(),iddd)){
+            if(new StockUpdater().update(id, jTextField1.getText(), Float.parseFloat(jTextField2.getText()), Float.parseFloat(jTextField3.getText().replace(",", "")), jTextField4.getText(),jTextField5.getText(),jTextField6.getText(),jTextField7.getText(),iddd)){
 
 
 
